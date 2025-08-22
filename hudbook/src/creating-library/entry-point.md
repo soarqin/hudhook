@@ -38,7 +38,7 @@ use hudhook::tracing::*;
 use hudhook::*;
 
 #[no_mangle]
-pub unsafe extern "stdcall" fn DllMain(
+pub unsafe extern "system" fn DllMain(
     hmodule: HINSTANCE,
     reason: u32,
     _: *mut std::ffi::c_void,

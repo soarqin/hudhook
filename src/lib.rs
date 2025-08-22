@@ -380,7 +380,7 @@ impl Hudhook {
 /// }
 ///
 /// #[no_mangle]
-/// pub unsafe extern "stdcall" fn DllMain(
+/// pub unsafe extern "system" fn DllMain(
 ///     hmodule: HINSTANCE,
 ///     reason: u32,
 ///     _: *mut std::ffi::c_void,
@@ -446,7 +446,7 @@ macro_rules! hudhook {
     ($t:ty, $hooks:expr) => {
         /// Entry point created by the `hudhook` library.
         #[no_mangle]
-        pub unsafe extern "stdcall" fn DllMain(
+        pub unsafe extern "system" fn DllMain(
             hmodule: ::hudhook::windows::Win32::Foundation::HINSTANCE,
             reason: u32,
             _: *mut ::std::ffi::c_void,

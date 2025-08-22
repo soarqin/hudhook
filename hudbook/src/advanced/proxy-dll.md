@@ -45,7 +45,7 @@ original one.
 
 ```rust
 // We define our exported function's signature as a type.
-type FDirectInput8Create = unsafe extern "stdcall" fn(
+type FDirectInput8Create = unsafe extern "system" fn(
     hinst: HINSTANCE,
     dwversion: u32,
     riidltf: *const GUID,
@@ -83,7 +83,7 @@ the same parameters, and return its return value.
 
 ```rust
 #[no_mangle]
-unsafe extern "stdcall" fn DirectInput8Create(
+unsafe extern "system" fn DirectInput8Create(
     hinst: HINSTANCE,
     dwversion: u32,
     riidltf: *const GUID,
