@@ -8,7 +8,7 @@ use std::time::{Duration, Instant};
 use imgui::Context;
 use once_cell::sync::{Lazy, OnceCell};
 use parking_lot::Mutex;
-use tracing::error;
+use tracing::{trace, error};
 use windows::core::{Error, Result, HRESULT};
 use windows::Win32::Foundation::{HWND, LPARAM, LRESULT, WPARAM};
 use windows::Win32::UI::WindowsAndMessaging::{
@@ -118,10 +118,13 @@ impl<T: RenderEngine> Pipeline<T> {
         // these fields are true, as described in imgui.h comments.
         // This prevents some unintentional inputs to main game while operating on
         // imgui windows.
+        trace!("test");
         if io_ro.want_capture_mouse {
+            trace!("want_capture_mouse");
             filter_bits |= MessageFilter::InputMouse.bits();
         }
         if io_ro.want_capture_keyboard {
+            trace!("want_capture_keyboard");
             filter_bits |= MessageFilter::InputKeyboard.bits();
         }
         self.shared_state.message_filter.store(filter_bits, Ordering::SeqCst);
